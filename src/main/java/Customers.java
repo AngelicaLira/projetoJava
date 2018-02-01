@@ -21,7 +21,7 @@ public class Customers {
 
             customer = api.customer().create(new CustomerRequest()
                     .ownId("CUS-" + System.currentTimeMillis())
-                    .fullname("Jose da Silva")
+                    .fullname("Jose da Silva Sauro")
                     .email("josedasilva@email.com")
                     .birthdate(new ApiDateRequest().date(new Date("12/11/90")))
                     .taxDocument(TaxDocumentRequest.cpf("22222222222"))
