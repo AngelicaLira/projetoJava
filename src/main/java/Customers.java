@@ -27,7 +27,6 @@ public class Customers {
 
         Customer customer = new Customer();
 
-
         /**
          * Input fullname
          */
@@ -47,13 +46,8 @@ public class Customers {
         String birthday = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
         Date date = null;
+        Date date1 = dateFormat.parse(birthday);
 
-         try  {
-         Date date1 = dateFormat.parse(birthday);
-         }
-         catch (ParseException e){
-            e.printStackTrace();
-         }
 
         /**
          * Input tax document
@@ -132,7 +126,7 @@ public class Customers {
                     .ownId("CUS-" + System.currentTimeMillis())
                     .fullname(fullname)
                     .email(email)
-                    .birthdate(new ApiDateRequest().date(new Date(birthday)))
+                    .birthdate(new ApiDateRequest().date(new birthdate()))
                     .taxDocument(TaxDocumentRequest.cpf(taxDocumentNumber))
                     .phone(new PhoneRequest().setAreaCode(phoneNumberAreaCode).setNumber(phoneNumber))
                     .shippingAddressRequest(new ShippingAddressRequest().street(shippingAddressStreet)
@@ -157,11 +151,18 @@ public class Customers {
         return customer;
     }
 
-    public Customer getCustomer(String id) {
 
-        Customer getCustomer = api.customer().get(id);
+    public String getCustomer() {
+
+        System.out.println("\nDigite seu e-mail ");
+        String ownId = input.next();
+
+        String getCustomer = String.valueOf(api.customer().get(ownId));
 
         return getCustomer;
+    }
+
+    private class birthdate extends Date {
     }
 }
 
