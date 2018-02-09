@@ -50,17 +50,18 @@ public class Orders {
         }
         return order;
     }
-    public void getOrder(String id) {
+    public Order getOrder(String id) {
+
+        Order order = new Order();
 
         try{
-            Order order = api.order().get(id);
-
-            System.out.println("\n"+order.toString());
+            order = api.order().get(id);
 
         } catch(UnexpectedException e) {
             //StatusCode >= 500
         } catch(ValidationException e) {
             //StatusCode entre 400 e 499 (exceto 401)
         }
+        return order;
     }
 }
