@@ -6,10 +6,9 @@ public class Main {
 
         Customers customer = new Customers();
 
-       System.out.println(customer.createCustomers().getOwnId());
+       System.out.println(customer.createCustomers().getId());
 
-
-            /* verificar onde colocar o try catch*/
+            // verificar onde colocar o try catch
 
             System.out.println(customer.getCustomer());
         }
