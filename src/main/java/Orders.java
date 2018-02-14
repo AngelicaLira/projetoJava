@@ -1,10 +1,18 @@
 import br.com.moip.API;
 import br.com.moip.exception.UnexpectedException;
 import br.com.moip.exception.ValidationException;
-import br.com.moip.request.*;
+import br.com.moip.request.OrderRequest;
+import br.com.moip.request.CustomerRequest;
+import br.com.moip.request.ApiDateRequest;
+import br.com.moip.request.TaxDocumentRequest;
+import br.com.moip.request.PhoneRequest;
+import br.com.moip.request.ShippingAddressRequest;
 import br.com.moip.resource.Order;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Orders {
 
@@ -14,34 +22,121 @@ public class Orders {
 
     private API api = myAuth.startConfig();
 
-    public Order createOrder() {
+    private Scanner input = new Scanner(System.in);
+
+    public Order createOrder() throws ParseException {
 
         Order order = new Order();
+
+        // Writter product
+        System.out.println("Digite o nome do produto");
+        String addItemName = input.next();
+
+        // Quantit
+        System.out.println("Quantidade: ");
+        Integer addItemquantity = Integer.valueOf(input.next());
+
+        // Details
+        System.out.println("Detalhe... ");
+        String addItemdetail = input.next();
+
+        // Price
+        System.out.println("Preço: ");
+        Integer addItemdetailprice = Integer.valueOf(input.next());
+
+        // Customer ID
+        System.out.println("ID Moip: ");
+        String customer = input.next();
+
+        // Customer Name
+        System.out.println("Nome: ");
+        String fullname = input.next();
+
+        // Customer Email
+        System.out.println("Email: ");
+        String email = input.next();
+
+        // Customer birthday
+        System.out.println("\nInsira sua data de nascimento: ");
+        String birthday = input.next();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+        Date date = null;
+        Date date1 = dateFormat.parse(birthday);
+
+        // Customer CPF
+        System.out.println("CPF: ");
+        String taxDocumentNumber = input.next();
+
+        // Customer Phone
+        System.out.println("Telefone ");
+
+        // Customer AreaPhone
+        System.out.println("DDD: ");
+        String phoneNumberAreaCode = input.next();
+
+        // Customer NPhone
+        System.out.println("Telefone: ");
+        String phoneNumber = input.next();
+
+        // Customer Address
+        System.out.println("Endereço ");
+
+        // Customer Shipping Address
+        System.out.println("Endereço: ");
+        String shippingAddressStreet = input.next();
+
+        // Customer Shipping Address Number
+        System.out.println("N: ");
+        String shippingAddressStreetNumber = input.next();
+
+        // Customer Shipping Address complement
+        System.out.println("Complemento: ");
+        String shippingAddressComplement = input.next();
+
+        // Customer Shipping Address City
+        System.out.println("Cidade: ");
+        String shippingAddressCity = input.next();
+
+        // Customer Shipping Address State
+        System.out.println("Estado: ");
+        String shippingAddressState = input.next();
+
+        // Customer Shipping Address Disctrict
+        System.out.println("Bairro: ");
+        String shippingAddressDistrict = input.next();
+
+        // Customer Shipping Address Country
+        System.out.println("Pais: ");
+        String shippingAddressCountry = input.next();
+
+        // Customer Shipping Address Zip
+        System.out.println("CEP: ");
+        String shippingAddressZipCode = input.next();
 
         try {
 
             order = api.order().create(new OrderRequest()
-                    .ownId("order_own_id")
-                    .addItem("Nome do produto", 10, "Mais info...", 100)
+                    .ownId("ORD-" + System.currentTimeMillis())
+                    .addItem(addItemName, addItemquantity,addItemdetail, addItemdetailprice)
                     .customer(new CustomerRequest()
-                            .ownId("customer_own_id")
-                            .fullname("Jose da Silva")
-                            .email("josedasilva@email.com")
-                            .birthdate(new ApiDateRequest().date(new Date()))
-                            .taxDocument(TaxDocumentRequest.cpf("22222222222"))
-                            .phone(new PhoneRequest().setAreaCode("11").setNumber("55443322"))
-                            .shippingAddressRequest(new ShippingAddressRequest().street("Avenida Faria Lima")
-                                    .streetNumber("3064")
-                                    .complement("12 andar")
-                                    .city("São Paulo")
-                                    .state("SP")
-                                    .district("Itaim")
-                                    .country("BRA")
-                                    .zipCode("01452-000")
-                            )
+                            .ownId("CUS-" + System.currentTimeMillis())
+                            .fullname(fullname)
+                            .email(email)
+                            .birthdate(new ApiDateRequest().date(new Birthdate()))
+                            .taxDocument(TaxDocumentRequest.cpf(taxDocumentNumber))
+                                    .phone(new PhoneRequest().setAreaCode(phoneNumberAreaCode).setNumber(phoneNumber))
+                                    .shippingAddressRequest(new ShippingAddressRequest().street(shippingAddressStreet)
+                                            .streetNumber(shippingAddressStreetNumber)
+                                            .complement(shippingAddressComplement)
+                                            .city(shippingAddressCity)
+                                            .state(shippingAddressState)
+                                            .district(shippingAddressDistrict)
+                                            .country(shippingAddressCountry)
+                                            .zipCode(shippingAddressZipCode)
+                                    )
                     )
+
             );
-            System.out.println(order.toString());
 
         } catch(UnexpectedException e) {
             //StatusCode >= 500
@@ -50,18 +145,17 @@ public class Orders {
         }
         return order;
     }
-    public Order getOrder(String id) {
+    public Order getOrder() {
 
-        Order order = new Order();
+        System.out.println("\n Digite o Código Moip do pedido:");
+        String id = input.next();
+        Order getOrder = api.order().get(id);
 
-        try{
-            order = api.order().get(id);
 
-        } catch(UnexpectedException e) {
-            //StatusCode >= 500
-        } catch(ValidationException e) {
-            //StatusCode entre 400 e 499 (exceto 401)
-        }
-        return order;
+        return getOrder;
+
+}
+private class Birthdate extends Date {
+
     }
 }
