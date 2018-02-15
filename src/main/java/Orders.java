@@ -28,88 +28,130 @@ public class Orders {
 
         Order order = new Order();
 
-        // Writter product
+        /**
+         * Input Product Name
+         */
         System.out.println("Digite o nome do produto");
         String addItemName = input.next();
 
-        // Quantit
+        /**
+         * Input Quantity
+         */
         System.out.println("Quantidade: ");
         Integer addItemquantity = Integer.valueOf(input.next());
 
-        // Details
+        /**
+         * Input Details
+         */
         System.out.println("Detalhe... ");
         String addItemdetail = input.next();
 
-        // Price
+        /**
+         * Input Price
+         */
         System.out.println("Preço: ");
         Integer addItemdetailprice = Integer.valueOf(input.next());
 
-        // Customer ID
+        /**
+         * Input ID Moip
+         */
         System.out.println("ID Moip: ");
         String customer = input.next();
 
-        // Customer Name
+        /**
+         * Input fullname
+         */
         System.out.println("Nome: ");
         String fullname = input.next();
 
-        // Customer Email
+        /**
+         * Input e-mail
+         */
         System.out.println("Email: ");
         String email = input.next();
 
-        // Customer birthday
+        /**
+         * Input birthdate
+         */
         System.out.println("\nInsira sua data de nascimento: ");
         String birthday = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
         Date date = null;
         Date date1 = dateFormat.parse(birthday);
 
-        // Customer CPF
+        /**
+         * Input tax document
+         */
         System.out.println("CPF: ");
         String taxDocumentNumber = input.next();
 
-        // Customer Phone
+        /**
+         * Input local phone
+         */
         System.out.println("Telefone ");
 
-        // Customer AreaPhone
+        /**
+         * Input ddd phone
+         */
         System.out.println("DDD: ");
         String phoneNumberAreaCode = input.next();
 
-        // Customer NPhone
+        /**
+         * Input  phone
+         */
         System.out.println("Telefone: ");
         String phoneNumber = input.next();
 
-        // Customer Address
+        /**
+         * Input address
+         */
         System.out.println("Endereço ");
 
-        // Customer Shipping Address
+        /**
+         * Input Address Street
+         */
         System.out.println("Endereço: ");
         String shippingAddressStreet = input.next();
 
-        // Customer Shipping Address Number
+        /**
+         * Input Address Number
+         */
         System.out.println("N: ");
         String shippingAddressStreetNumber = input.next();
 
-        // Customer Shipping Address complement
+        /**
+         * Input Address Complement
+         */
         System.out.println("Complemento: ");
         String shippingAddressComplement = input.next();
 
-        // Customer Shipping Address City
+        /**
+         * Input Address City
+         */
         System.out.println("Cidade: ");
         String shippingAddressCity = input.next();
 
-        // Customer Shipping Address State
+        /**
+         * Input Address State
+         */
         System.out.println("Estado: ");
         String shippingAddressState = input.next();
 
-        // Customer Shipping Address Disctrict
+        /**
+         * Input Address District
+         */
         System.out.println("Bairro: ");
         String shippingAddressDistrict = input.next();
 
-        // Customer Shipping Address Country
+        /**
+         * Input Address Country
+         */
         System.out.println("Pais: ");
         String shippingAddressCountry = input.next();
 
-        // Customer Shipping Address Zip
+        /**
+         * Input Address zipCode
+         */
         System.out.println("CEP: ");
         String shippingAddressZipCode = input.next();
 
@@ -147,7 +189,7 @@ public class Orders {
     }
     public Order getOrder() {
 
-        System.out.println("\n Digite o Código Moip do pedido:");
+        System.out.println("\n Digite o ID Moip do Order:");
         String id = input.next();
         Order getOrder = api.order().get(id);
 
