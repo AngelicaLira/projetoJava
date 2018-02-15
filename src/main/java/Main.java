@@ -1,8 +1,9 @@
 import java.text.ParseException;
+import br.com.moip.request.PaymentRequest;
 
 public class Main {
 
-    public static void main(String[] args, Payments.OrderID payments) throws ParseException {
+    public static void main(String[] args) throws ParseException {
 
         Customers customer = new Customers();
 
@@ -11,17 +12,20 @@ public class Main {
 
        //* verificar onde colocar o try catch*//*
 
-      System.out.println(customer.getCustomer());
+        Orders order = new Orders();
+
+        System.out.println(order.createOrder().getId());
+
+        System.out.println(order.getOrder());
 
 
         Payments payment = new Payments();
 
-        System.out.println(payments.createPayments());
-        System.out.println(payments.getPayments());
+        System.out.println(payment.createPayment().getId());
 
-        Payments2 cc = new Payments2();
+        //System.out.println(payment.getPayment());
 
-        System.out.println(payments.createPayments());
+
 
 
     }
