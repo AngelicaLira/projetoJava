@@ -11,6 +11,7 @@ import br.com.moip.resource.Payment;
 import br.com.moip.resource.links.PaymentLinks;
 
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -26,18 +27,17 @@ public class Payments {
 
     private Scanner input = new Scanner(System.in);
 
-    public  class OrderID extends Orders {
-        private Order orderId;
-        Order order = orderId;
 
-    public Payment createPayments() {
+
+    public Payment createPayment() throws ParseException {
 
         Payment payment = new Payment();
 
                
       try {
-                payment = api.payment().create(new PaymentRequest()
-                        .orderId(String.valueOf(orderId))
+          Orders order = new Orders();
+          payment = api.payment().create(new PaymentRequest()
+                        .orderId(order.getOrder().getId())
                         .installmentCount(1)
                         .fundingInstrument(new FundingInstrumentRequest()
                                 .boleto(new BoletoRequest()
@@ -65,29 +65,18 @@ public class Payments {
 
         }
 
-            public String getPayments() {
-                PaymentLinks paymentlinks = new PaymentLinks();
+            public Payment getPayment() {
+                
 
-                String getPayments = String.valueOf(api.payment().get(String.valueOf(paymentlinks)));
-
-
-                Payment getPayment = null;
-                getPayment.getLinks().payBoletoLink();
-
-                Payment getPayment2 = null;
-                getPayment2.getLinks().payBoletoPrintLink();
-
-                System.out.println("\n Pague e Imprima aqui");
-                String link = input.next();
-                String print = input.next();
-                return getPayments();
+                System.out.println("\n Digite o ID Moip do Order:");
+                String id = input.next();
+                Payment getPayment = api.payment().get(id);
+                
+                return getPayment();
             }
 
         }
-    }
 
-    class Orders extends Order {
-    }
 
 
 
