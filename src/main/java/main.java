@@ -1,11 +1,13 @@
-import br.com.moip.resource.Order;
+import br.com.moip.resource.Account;
+
+import java.text.ParseException;
 
 public class main {
 
-    public static void main(String[]args) {
-        Orders orders = new Orders();
+    public static void main(String[]args) throws ParseException {
+        Accounts account = new Accounts();
 
-        Order getOrder = orders.getOrder("ORD-NIRK69KW2H9C");
-        System.out.println(getOrder);
+        System.out.println(account.createAccount());
+
     }
 }
