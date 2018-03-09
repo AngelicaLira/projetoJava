@@ -1,4 +1,5 @@
 import java.text.ParseException;
+import br.com.moip.request.PaymentRequest;
 
 public class Main {
 
@@ -8,8 +9,20 @@ public class Main {
 
        System.out.println(customer.createCustomers().getId());
 
-            // verificar onde colocar o try catch
+       //* verificar onde colocar o try catch*//*
 
-            System.out.println(customer.getCustomer());
-        }
+        Orders order = new Orders();
+
+        System.out.println(order.createOrder().getId());
+
+        System.out.println(order.getOrder());
+
+
+        Payments payment = new Payments();
+
+        System.out.println(payment.createPayment().getId());
+
+        //System.out.println(payment.getPayment());
     }
+}
+
