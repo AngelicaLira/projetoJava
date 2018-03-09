@@ -64,13 +64,13 @@ public class Customers {
          * Input ddd phone
          */
         System.out.println("\nInsira o nº do seu DDD: ");
-        String phoneNumber = input.next();
+        String phoneNumberAreaCode = input.next();
 
         /**
          * Input  phone
          */
         System.out.println("\nInsira o nº do seu Telefone: ");
-        String phoneNumberAreaCode = input.next();
+        String phoneNumber= input.next();
 
         /**
          * Input  Address
@@ -126,7 +126,7 @@ public class Customers {
                     .ownId("CUS-" + System.currentTimeMillis())
                     .fullname(fullname)
                     .email(email)
-                    .birthdate(new ApiDateRequest().date(new birthdate()))
+                    .birthdate(new ApiDateRequest().date(new Birthdate()))
                     .taxDocument(TaxDocumentRequest.cpf(taxDocumentNumber))
                     .phone(new PhoneRequest().setAreaCode(phoneNumberAreaCode).setNumber(phoneNumber))
                     .shippingAddressRequest(new ShippingAddressRequest().street(shippingAddressStreet)
@@ -152,17 +152,18 @@ public class Customers {
     }
 
 
-    public String getCustomer() {
+    public Customer getCustomer() {
 
-        System.out.println("\nDigite seu e-mail ");
-        String ownId = input.next();
 
-        String getCustomer = String.valueOf(api.customer().get(ownId));
+
+        System.out.println("\nDigite o ID Moip do Customer:");
+        String id = input.next();
+        Customer getCustomer = api.customer().get(id);
 
         return getCustomer;
     }
 
-    private class birthdate extends Date {
+    private class Birthdate extends Date {
     }
 }
 

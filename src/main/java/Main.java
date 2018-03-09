@@ -7,8 +7,7 @@ public class Main {
 
         Customers customer = new Customers();
 
-       System.out.println(customer.createCustomers().getOwnId());
-
+       System.out.println(customer.createCustomers().getId());
 
        //* verificar onde colocar o try catch*//*
 
@@ -24,10 +23,6 @@ public class Main {
         System.out.println(payment.createPayment().getId());
 
         //System.out.println(payment.getPayment());
-
-
-
-
     }
 }
 
