@@ -13,6 +13,7 @@ public class Main {
         System.out.println(multiorders.createMultiorder());
 
         System.out.println(multiorders.getMultiorder());
+        //OK
 
     }
 }

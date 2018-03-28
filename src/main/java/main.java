@@ -1,13 +1,20 @@
-import br.com.moip.resource.Account;
-
 import java.text.ParseException;
+import br.com.moip.resource.Multiorder;
 
-public class main {
+public class Main {
 
-    public static void main(String[]args) throws ParseException {
-        Accounts account = new Accounts();
+    public static void main(String[] args) throws ParseException {
 
-        System.out.println(account.createAccount());
+
+       //* verificar onde colocar o try catch*//*
+
+        Multiorders multiorders = new Multiorders();
+
+        System.out.println(multiorders.createMultiorder());
+
+        System.out.println(multiorders.getMultiorder());
+        //OK
 
     }
 }
+
