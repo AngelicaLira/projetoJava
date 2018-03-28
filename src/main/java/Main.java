@@ -1,30 +1,35 @@
 import java.text.ParseException;
-import br.com.moip.request.PaymentRequest;
+import br.com.moip.request.MultiorderRequest;
+import br.com.moip.resource.Escrow;
 
 public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-        Customers customer = new Customers();
+    //    Customers customer = new Customers();
 
-       System.out.println(customer.createCustomers().getOwnId());
+//       System.out.println(customer.createCustomers().getOwnId());
 
 
        //* verificar onde colocar o try catch*//*
 
-        Orders order = new Orders();
+        Multiorders multiorder = new Multiorders();
 
-        System.out.println(order.createOrder().getId());
+        System.out.println(multiorder.createMultiorder().getId());
 
-        System.out.println(order.getOrder());
+       // System.out.print(multiorder.createMultiorder().getId());
 
 
-        Payments payment = new Payments();
+       System.out.println(multiorder.getMultiorder());
 
-        System.out.println(payment.createPayment().getId());
 
-        //System.out.println(payment.getPayment());
+     //  Multipaycc multipayment = new Multipaycc();
 
+      //  System.out.println(multipayment.createMultipayment());
+
+       // System.out.println(multipayment.getMultipayment());
+
+        // System.out.println(multipayment.getEscrow());
 
 
 
