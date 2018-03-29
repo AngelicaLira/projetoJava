@@ -10,8 +10,13 @@ public class Main {
 
 //       System.out.println(customer.createCustomers().getOwnId());
 
+        Auth auth = new Auth();
+        System.out.println(auth.createAuth());
 
-       //* verificar onde colocar o try catch*//*
+        Tokens tokens = new Tokens();
+        System.out.println(tokens.createTokens());
+        //* verificar onde colocar o try catch*//*
+/*
 
       Multiorders multiorder = new Multiorders();
 
@@ -36,4 +41,6 @@ public class Main {
         return true;
     }
 }
-
+*/
+    }
+}
