@@ -3,7 +3,6 @@ import br.com.moip.exception.UnexpectedException;
 import br.com.moip.exception.ValidationException;
 import br.com.moip.resource.Escrow;
 
-import java.text.ParseException;
 import java.util.Scanner;
 
 
@@ -16,7 +15,7 @@ public class Escrows {
 
     private Scanner input = new Scanner(System.in);
 
-    public void getEscrow()  {
+    public String getEscrow()  {
 
 
         /*
@@ -35,5 +34,6 @@ public class Escrows {
         } catch (ValidationException e) {
             //StatusCode entre 400 e 499 (exceto 401)
         }
+    return escr;
     }
 }
