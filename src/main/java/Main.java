@@ -6,22 +6,32 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-    //    Customers customer = new Customers();
+        //    Customers customer = new Customers();
 
 //       System.out.println(customer.createCustomers().getOwnId());
+        /**
+         * reembolso cartão
+         */
+       Refunds refund = new Refunds();
+        System.out.println(refund.createRefunds());
+        /**
+         * reembolso boleto
+         */
 
+        RefundBoleto refund = new RefundBoleto();
+        System.out.println(refund.createRefundBoleto());
 
-       //* verificar onde colocar o try catch*//*
-
+        //* verificar onde colocar o try catch*//*
+/*
       Multiorders multiorder = new Multiorders();
 
       System.out.println(multiorder.createMultiorder().getId());
        //System.out.println(multiorder.getMultiorder());
 
 
-      Multipaycc multipayment = new Multipaycc();
+      Multipayments multipayments = new Multipayments();
 
-      System.out.println(multipayment.createMultipayment());
+      System.out.println(multipayments.createMultipayment());
 
        //System.out.println(multipayment.getMultipayment());
 
@@ -34,6 +44,7 @@ public class Main {
 
     private static boolean escrow() {
         return true;
+    }*/
     }
 }
 
