@@ -13,26 +13,27 @@ public class Main {
 
        //* verificar onde colocar o try catch*//*
 
-        Multiorders multiorder = new Multiorders();
+      Multiorders multiorder = new Multiorders();
 
-        System.out.println(multiorder.createMultiorder().getId());
-
-       // System.out.print(multiorder.createMultiorder().getId());
-
-
-       System.out.println(multiorder.getMultiorder());
+      System.out.println(multiorder.createMultiorder().getId());
+       //System.out.println(multiorder.getMultiorder());
 
 
-     //  Multipaycc multipayment = new Multipaycc();
+      Multipaycc multipayment = new Multipaycc();
 
-      //  System.out.println(multipayment.createMultipayment());
+      System.out.println(multipayment.createMultipayment());
 
-       // System.out.println(multipayment.getMultipayment());
+       //System.out.println(multipayment.getMultipayment());
 
-        // System.out.println(multipayment.getEscrow());
+        Escrows escrow = new Escrows();
+        System.out.println(escrow());
 
 
 
+    }
+
+    private static boolean escrow() {
+        return true;
     }
 }
 

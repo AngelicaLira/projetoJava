@@ -6,7 +6,6 @@ import br.com.moip.request.ApiDateRequest;
 import br.com.moip.request.InstructionLinesRequest;
 import br.com.moip.request.BoletoRequest;
 import br.com.moip.request.FundingInstrumentRequest;
-import br.com.moip.resource.Multiorder;
 import br.com.moip.resource.Multipayment;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -35,11 +34,12 @@ public class Multipayments {
 
 
         try {
-                    multipayment = api.multipayment().create(new PaymentRequest()
-                    .orderId(multiorder.createMultiorder().getOwnId())
+
+            multipayment = api.multipayment().create(new PaymentRequest()
+                    .orderId(multiorder.getMultiorder())
                     .installmentCount(1)
                     .escrow(new PaymentRequest.EscrowRequest("Custódia de pagamento"))
-                    .fundingInstrument(new FundingInstrumentRequest()
+                            .fundingInstrument(new FundingInstrumentRequest()
                             .boleto(new BoletoRequest()
                                     .expirationDate(new ApiDateRequest().date(new GregorianCalendar(2020, Calendar.NOVEMBER, 10).getTime()))
                                     .logoUri("http://logo.com")
@@ -65,14 +65,14 @@ public class Multipayments {
 
 
 
-    public Multipayment getMultipayment() {
+    public void getMultipayment() {
 
 
         System.out.println("\n Digite o ID Moip do Order:");
         String id = input.next();
         Multipayment getMultipayment = api.multipayment().get(id);
 
-        return getMultipayment();
+        return;
         }
 
         }

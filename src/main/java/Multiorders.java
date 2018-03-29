@@ -42,8 +42,8 @@ public class Multiorders {
         /*
          * Input  Own_ID
          */
-        System.out.println("\nID do pedido:" + getNextId());
-        String IDPed = String.valueOf(getNextId());
+        System.out.println("\nID do pedido:" +(1));
+        String IDPed = String.valueOf(1);
 
         /*
          * Selection product
@@ -131,7 +131,7 @@ public class Multiorders {
 
         try {
             multiorder = api.multiorder().create(new MultiorderRequest()
-                    .ownId(createMultiorder().getOwnId())
+                    .ownId("abx123")
                     .addOrder(new OrderRequest()
                             .ownId(String.valueOf(IDPed))
                             .amount(new OrderAmountRequest()
@@ -140,8 +140,8 @@ public class Multiorders {
                             )
                             .addItem(Choose, Qnt, "Teste", 2000)
                             .customer(new CustomerRequest()
-                                    .ownId(String.valueOf(customers()))
-                                    .fullname(String.valueOf(customers().fullname()))
+                                    .ownId(IDCus)
+                                    .fullname(CusName)
                                     .email(email)
                                     .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
                                     .taxDocument(TaxDocumentRequest.cpf(Cpf))
@@ -159,7 +159,7 @@ public class Multiorders {
                                             .district(Bairro))
                             )
                             .addReceiver(new ReceiverRequest()
-                                    .secondary("MPA-818172182C15", new AmountRequest().percentual(90), false))
+                                    .secondary("MPA-818172182C15", new AmountRequest().percentual(10), false))
                             .addReceiver(new ReceiverRequest()
                                     .primary("MPA-101C9F83FF3A", new AmountRequest(), true))
                     )
@@ -190,12 +190,12 @@ public class Multiorders {
                                             .district(Bairro))
                             )
                             .addReceiver(new ReceiverRequest()
-                                    .primary("MPA-101C9F83FF3A", new AmountRequest())
+                                    .primary("MPA-101C9F83FF3A", new AmountRequest(), true)
                             )
                     )
             );
-            System.out.print(multiorder.getId());
-            System.out.print(multiorder.getOrders());
+
+
 
 
         } catch (UnexpectedException e) {
@@ -203,37 +203,35 @@ public class Multiorders {
         } catch (ValidationException e) {
             //StatusCode entre 400 e 499 (exceto 401)
         }
+
         return multiorder;
     }
 
-    private CustomerRequest customers() {
-        return null;
-    }
+        public String getMultiorder () {
 
 
-    public String getMultiorder() {
+            System.out.println("\nID Moip:");
+            String id = input.next();
+            String getMutiorder = String.valueOf(api.multiorder().get(id));
 
 
-        System.out.println("\n Digite o ID Moip do Order:");
-        String id = getMultiorder();
-        String getMutiorder = String.valueOf(api.multiorder().get(id));
-
-
-        return id;
-    }
-
-
-    private int IDs() {
-        int nextId = 0 +1;
-        int getNextId;
-
-
-        int id = getNextId();
-        return nextId + 1;
+            return id;
         }
 
-    private int getNextId() {
-        return 1;
-    }
+/*
 
-}
+        private int IDs () {
+            int nextId = 0 + 1;
+            int getNextId;
+
+
+            int id = getNextId();
+            return nextId;
+        }
+
+        private int getNextId () {
+            return 1;
+        }
+*/
+
+    }

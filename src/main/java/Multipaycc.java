@@ -1,9 +1,9 @@
 import br.com.moip.API;
-import br.com.moip.api.EscrowAPI;
 import br.com.moip.exception.UnexpectedException;
 import br.com.moip.exception.ValidationException;
 import br.com.moip.request.*;
 import br.com.moip.resource.Multipayment;
+import br.com.moip.request.PaymentRequest.EscrowRequest.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,9 +86,11 @@ public class Multipaycc {
         String Number = input.next();
 
 
+
+
         try {
             multipayment = api.multipayment().create(new PaymentRequest()
-                    .orderId(multiorder.createMultiorder().getOwnId())
+                    .orderId(multiorder.getMultiorder())
                     .installmentCount(1)
                     .escrow(new PaymentRequest.EscrowRequest("Custódia de pagamento"))
                     .delayCapture(false)
@@ -126,26 +128,16 @@ public class Multipaycc {
     }
 
 
-    public String getMultipayment() {
+    public void getMultipayment() {
 
 
-        System.out.println("\n Digite o ID Moip do Order:");
-        String id = input.next();
-        Multipayment mutipayment = api.multipayment().get(id);
+        System.out.println("\nId do Payment:");
 
-        return id;
+
+        return;
     }
 
 
-
-    public EscrowAPI getEscrow() {
-
-
-        System.out.println("\n Escrow:");
-        EscrowAPI escrow = api.escrow();
-
-        return escrow;
-    }
 
 }
 
