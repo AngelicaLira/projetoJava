@@ -21,6 +21,9 @@ public class Main {
         RefundBoleto refund = new RefundBoleto();
         System.out.println(refund.createRefundBoleto());
 
+        Escrows escrow = new Escrows();
+        System.out.println(escrow.toString());
+
         //* verificar onde colocar o try catch*//*
 /*
       Multiorders multiorder = new Multiorders();
@@ -35,8 +38,7 @@ public class Main {
 
        //System.out.println(multipayment.getMultipayment());
 
-        Escrows escrow = new Escrows();
-        System.out.println(escrow());
+
 
 
 
