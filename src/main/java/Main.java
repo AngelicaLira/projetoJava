@@ -22,11 +22,11 @@ public class Main {
       Multipaycc multipayment = new Multipaycc();
 
       System.out.println(multipayment.createMultipayment());
-
+      System.out.println(multipayment.createMultipayment().getPayments().get(0).getEscrows().get(0).getDescription().toString());
        //System.out.println(multipayment.getMultipayment());
 
         Escrows escrow = new Escrows();
-        System.out.println(escrow());
+        System.out.println(escrow);
 
 
 
