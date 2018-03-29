@@ -1,5 +1,4 @@
 import br.com.moip.API;
-import br.com.moip.api.EscrowAPI;
 import br.com.moip.exception.UnexpectedException;
 import br.com.moip.exception.ValidationException;
 import br.com.moip.resource.Escrow;
@@ -17,7 +16,7 @@ public class Escrows {
 
     private Scanner input = new Scanner(System.in);
 
-    public Escrow getEscrow() throws ParseException {
+    public void getEscrow()  {
 
 
         /*
@@ -36,6 +35,5 @@ public class Escrows {
         } catch (ValidationException e) {
             //StatusCode entre 400 e 499 (exceto 401)
         }
-        return getEscrow();
     }
 }

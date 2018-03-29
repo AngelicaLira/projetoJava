@@ -1,7 +1,9 @@
 import br.com.moip.API;
+import br.com.moip.api.EscrowAPI;
 import br.com.moip.exception.UnexpectedException;
 import br.com.moip.exception.ValidationException;
 import br.com.moip.request.*;
+import br.com.moip.resource.Escrow;
 import br.com.moip.resource.Multipayment;
 import br.com.moip.request.PaymentRequest.EscrowRequest.*;
 
@@ -10,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Multipaycc {
@@ -89,11 +92,11 @@ public class Multipaycc {
 
 
         try {
+
             multipayment = api.multipayment().create(new PaymentRequest()
                     .orderId(multiorder.getMultiorder())
                     .installmentCount(1)
-                    .escrow(new PaymentRequest.EscrowRequest("Custódia de pagamento"))
-                    .delayCapture(false)
+                    .escrow (new PaymentRequest.EscrowRequest("Custódia de pagamento").toString())                    .delayCapture(false)
                     .fundingInstrument(new FundingInstrumentRequest()
                     .creditCard (new CreditCardRequest()
                                     .number(String.valueOf(numbc))
@@ -114,6 +117,7 @@ public class Multipaycc {
                     )
                     )
             );
+
 
 
         } catch (UnexpectedException e) {
