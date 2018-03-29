@@ -96,7 +96,7 @@ public class Multipaycc {
             multipayment = api.multipayment().create(new PaymentRequest()
                     .orderId(multiorder.getMultiorder())
                     .installmentCount(1)
-                    .escrow (new PaymentRequest.EscrowRequest("Custódia de pagamento").toString())                    .delayCapture(false)
+                    .escrow (new PaymentRequest.EscrowRequest("Custódia de pagamento"))                    .delayCapture(false)
                     .fundingInstrument(new FundingInstrumentRequest()
                     .creditCard (new CreditCardRequest()
                                     .number(String.valueOf(numbc))
