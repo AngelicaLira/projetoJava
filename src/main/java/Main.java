@@ -1,4 +1,5 @@
 import br.com.moip.resource.Escrow;
+import br.com.moip.resource.Multiorder;
 import br.com.moip.resource.Multipayment;
 import br.com.moip.resource.Payment;
 
@@ -17,8 +18,8 @@ public class Main {
         //System.out.println(customer.getCustomer());
 */
         //Cria Multiorder
-        Multiorders multiorders = new Multiorders();
-        System.out.println(multiorders.createMultiorder().getId());
+        Multiorder multiorders = new Multiorders().createMultiorder();
+        System.out.println(multiorders.getId());
 
 
         // Pagamentos
@@ -28,21 +29,24 @@ public class Main {
         if (paymentMethod == 1) {
 
             //Pagamento Cartão
-            Multipayment multipayment = new Multipaycc().createMultipayment();
+            Multipayment multipayment = new Multipaycc().createMultipayment(multiorders.getId());
             System.out.println(multipayment);
             escrowId = multipayment.getPayments().get(0).getEscrowId();
+
+        } else {
 
             if (paymentMethod == 2) {
 
                 //Pagamento Boleto
-                Multipayment multipaymentbol = new Multipayments().createMultipayment();
+                Multipayment multipaymentbol = new Multipayments().createMultipayment(multiorders.getId());
                 System.out.println(multipaymentbol);
                 escrowId = multipaymentbol.getPayments().get(0).getEscrowId();
             }
-        } else {
-            System.out.println("Método de pagamento inválido!");
-            escrowId = "ERROR";
-            System.exit(1);
+            else {
+                System.out.println("Método de pagamento inválido!");
+                escrowId = "ERROR";
+                System.exit(1);
+            }
         }
 
         //Libera Escrow

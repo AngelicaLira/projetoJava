@@ -131,15 +131,11 @@ public class Customers {
     }
 
 
-    public String getCustomer() {
+    public Customer getCustomer(String customerId) {
 
+        Customer getCustomer = api.customer().get(customerId);
 
-
-        System.out.println("\nDigite o ID Moip do Customer:");
-        String id = input.next();
-        String getCustomer = String.valueOf(api.customer().get(id));
-
-        return id;
+        return getCustomer;
     }
 
     private class Birthdate extends Date {
