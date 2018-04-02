@@ -1,49 +1,39 @@
 import java.text.ParseException;
 
-import br.com.moip.API;
-import br.com.moip.request.*;
-import br.com.moip.resource.Escrow;
-import br.com.moip.resource.Multipayment;
-import br.com.moip.resource.Payment;
-
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+        public static void main(String[] args) throws ParseException {
 
 
-        //    Customers customer = new Customers();
+                //Cria Customer
+                Customers customer = new Customers();
+                System.out.println(customer.createCustomers().getOwnId());
+                System.out.println(customer.getCustomer());
 
-//       System.out.println(customer.createCustomers().getOwnId());
+                //Solicita autorização
+                Auth auth = new Auth();
+                System.out.println(auth.createAuth());
 
+                //Retorna Token
+                Tokens tokens = new Tokens();
+                System.out.println(tokens.createTokens());
+                //* verificar onde colocar o try catch*//*
 
-        //* verificar onde colocar o try catch*//*
-/*
-
-        Multiorders multiorder = new Multiorders();
-
-        System.out.println(multiorder.createMultiorder().getId());
-        System.out.println(multiorder.getMultiorder());
-*/
-
-
-        Multipaycc multipayment = new Multipaycc();
-        System.out.println(multipayment.createMultipayment());
-
-
-        //System.out.println(multipayment.getMultipayment());
+                //Cria Multiorder
+                Multiorders multiorders = new Multiorders();
+                System.out.println(multiorders.createMultiorder().getId());
 
 
-      Escrows escrow = new Escrows();
-   System.out.println(escrow.getEscrow());
+                //Pagamento Cartão
+                Multipaycc multipayment = new Multipaycc();
+                System.out.println(multipayment.createMultipayment());
 
+                //Pagamento Boleto
+                Multipayments multipaymentbol = new Multipayments();
+                System.out.println(multipaymentbol.createMultipayment());
 
-    }
-
+                //Libera Escrow
+                Escrows escrow = new Escrows();
+                System.out.println(escrow);
+        }
 }
-
-/*
-    private static boolean escrow() {
-        return true;
-    }
-}*/
-
