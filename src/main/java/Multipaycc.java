@@ -3,16 +3,16 @@ import br.com.moip.exception.UnexpectedException;
 import br.com.moip.exception.ValidationException;
 import br.com.moip.request.*;
 import br.com.moip.resource.Multipayment;
-import br.com.moip.request.PaymentRequest.EscrowRequest.*;
+import sun.util.calendar.LocalGregorianCalendar;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
-
 import java.util.Scanner;
 
 public class Multipaycc {
+
     private Authorization config;
 
     private Authorization myAuth = new Authorization();
@@ -24,94 +24,92 @@ public class Multipaycc {
     private Multiorders multiorder = new Multiorders();
 
 
-    public Multipayment createMultipayment() throws ParseException {
+    public Multipayment createMultipayment(String multiorderId) throws ParseException {
 
         Multipayment multipayment = new Multipayment();
 
 
-        /*
-         * Number Card
-         */
+        // * Number Card
+
         System.out.println("\nNumero do cartão:");
         String numbc = input.next();
 
-        /*
-         * CVV
-         */
+
+        // * CVV
+
         System.out.println("\nCVC:");
         Integer cvv = Integer.valueOf(input.next());
 
-        /*
-         * Expiration Month
-         */
+
+        // * Expiration Month
+
         System.out.println("\nMês expiração:");
-        Integer mes = Integer.valueOf(input.next());
+        String mes = input.next();
 
-        /*
-         * Expiration Year
-         */
+
+        //* Expiration Year
+
         System.out.println("\nAno expiração:");
-        Integer year = Integer.valueOf(input.next());
+        String year = input.next();
 
-        /*
-         * Name
-         */
+
+        //* Name
+
         System.out.println("\nNome:");
         String HolderName = input.next();
-        /*
-         * cpf
-         */
+
+        // * cpf
+
         System.out.println("\nCPF:");
         String Cpf = input.next();
 
-        /**
-         * Input birthdate
-         */
-        System.out.println("\nData de nascimento: ");
+
+        //* Input birthdate
+
+    System.out.println("\nData de nascimento (yyyy-mm-dd): ");
         String birthday = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYYMMDD");
-        Date date = null;
+        LocalGregorianCalendar.Date date = null;
         Date date1 = dateFormat.parse(birthday);
 
-        /*
-         *Input ddd phone
-         */
+
+        //*Input ddd phone
+
         System.out.println("DDD: ");
         String DDD = input.next();
 
-        /*
-         * Input  phone
-         */
+        //**
+        // * Input  phone
+        //
         System.out.println("Telefone: ");
         String Number = input.next();
 
-
-
-
         try {
+
             multipayment = api.multipayment().create(new PaymentRequest()
-                    .orderId(multiorder.getMultiorder())
+                    .orderId(multiorderId)
                     .installmentCount(1)
                     .escrow(new PaymentRequest.EscrowRequest("Custódia de pagamento"))
-                    .delayCapture(false)
-                    .fundingInstrument(new FundingInstrumentRequest()
-                    .creditCard (new CreditCardRequest()
-                                    .number(String.valueOf(numbc))
-                                    .cvc(cvv)
-                                    .expirationMonth(String.valueOf(mes))
-                                    .expirationYear(String.valueOf(year))
-                                    .holder(
-                                            new HolderRequest()
-                                                    .fullname(HolderName)
-                                                    .birthdate(birthday)
-                                                    .phone(
-                                                            new PhoneRequest()
-                                                                    .setAreaCode(DDD)
-                                                                    .setNumber(Number)
+                    .fundingInstrument(
+                            new FundingInstrumentRequest()
+                                    .creditCard(
+                                            new CreditCardRequest()
+                                                    .number(numbc)
+                                                    .cvc(cvv)
+                                                    .expirationMonth(mes)
+                                                    .expirationYear(year)
+                                                    .holder(
+                                                            new HolderRequest()
+                                                                    .fullname(HolderName)
+                                                                    .birthdate(birthday)
+                                                                    .phone(
+                                                                            new PhoneRequest()
+                                                                                    .setAreaCode(DDD)
+                                                                                    .setNumber(Number)
+                                                                    )
+                                                                    .taxDocument(TaxDocumentRequest.cpf(Cpf))
                                                     )
-                                                    .taxDocument(TaxDocumentRequest.cpf(Cpf))
                                     )
-                    )
                     )
             );
 
@@ -122,22 +120,18 @@ public class Multipaycc {
                 ValidationException e) {
             //StatusCode entre 400 e 499 (exceto 401)
         }
+
         return multipayment;
-
-
     }
 
+}
+    /*public void getMultipayment() {
 
-    public void getMultipayment() {
 
-
-        System.out.println("\nId do Payment:");
-
+        System.out.println("\n Digite o ID Moip do Order:");
+        String id = input.next();
+        Multipayment getMultipayment = api.multipayment().get(id);
 
         return;
     }
-
-
-
-}
-
+    }*/

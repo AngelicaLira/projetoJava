@@ -27,94 +27,73 @@ public class Customers {
 
         Customer customer = new Customer();
 
-        /**
+        /*
          * Input fullname
          */
-        System.out.println("\nInsira o seu nome completo: ");
+        System.out.println("\nPrimeiro Nome: ");
         String fullname = input.next();
-
-        /**
+        /*
          * Input e-mail
          */
-        System.out.println("\nInsira o seu e-mail: ");
+        System.out.println("\nE-mail: ");
         String email = input.next();
-
-        /**
+        /*
          * Input birthdate
          */
-        System.out.println("\nInsira sua data de nascimento: ");
+        System.out.println("\nData de nascimento: ");
         String birthday = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
         Date date = null;
         Date date1 = dateFormat.parse(birthday);
-
-
-        /**
+        /*
          * Input tax document
          */
-        System.out.println("\nInsira o nº do seu CPF: ");
+        System.out.println("\nCPF: ");
         String taxDocumentNumber = input.next();
-
-        /**
+        /*
          * Input local phone
          */
         System.out.println("\nTelefone ");
-
-        /**
+        /*
          * Input ddd phone
          */
-        System.out.println("\nInsira o nº do seu DDD: ");
-        String phoneNumber = input.next();
-
-        /**
+        System.out.println("\nDDD: ");
+        String phoneNumberAreaCode = input.next();
+        /*
          * Input  phone
          */
-        System.out.println("\nInsira o nº do seu Telefone: ");
-        String phoneNumberAreaCode = input.next();
-
-        /**
+        System.out.println("\nTelefone: ");
+        String phoneNumber= input.next();
+        /*
          * Input  Address
          */
         System.out.println("\nEndereço ");
-
-        /**
+        /*
          * Input  Address Street
          */
-        System.out.println("\nEndereço: ");
+        System.out.println("\nRua: ");
         String shippingAddressStreet = input.next();
-        /**
+        /*
          * Input  Address Number
          */
         System.out.println("\nNúmero: ");
         String shippingAddressStreetNumber = input.next();
-        /**
-         * Input  Address Complement
-         */
-        System.out.println("\nComplemento: ");
-        String shippingAddressComplement = input.next();
-        /**
+        /*
          * Input  Address City
          */
         System.out.println("\nCidade: ");
         String shippingAddressCity = input.next();
-        /**
+        /*
          * Input  Address State
          */
-        System.out.println("\nEstado: ");
+        System.out.println("\nEstado (2 digitos): ");
         String shippingAddressState = input.next();
-        /**
+        /*
          * Input  Address District
          */
         System.out.println("\nBairro: ");
         String shippingAddressDistrict = input.next();
-
-        /**
-         * Input  Address Country
-         */
-        System.out.println("\nPais: ");
-        String shippingAddressCountry = input.next();
-
-        /**
+        /*
          * Input  Address zipCode
          */
         System.out.println("\nCEP: ");
@@ -126,16 +105,16 @@ public class Customers {
                     .ownId("CUS-" + System.currentTimeMillis())
                     .fullname(fullname)
                     .email(email)
-                    .birthdate(new ApiDateRequest().date(new birthdate()))
+                    .birthdate(new ApiDateRequest().date(new Birthdate()))
                     .taxDocument(TaxDocumentRequest.cpf(taxDocumentNumber))
                     .phone(new PhoneRequest().setAreaCode(phoneNumberAreaCode).setNumber(phoneNumber))
                     .shippingAddressRequest(new ShippingAddressRequest().street(shippingAddressStreet)
                             .streetNumber(shippingAddressStreetNumber)
-                            .complement(shippingAddressComplement)
+                            .complement("Casa")
                             .city(shippingAddressCity)
                             .state(shippingAddressState)
                             .district(shippingAddressDistrict)
-                            .country(shippingAddressCountry)
+                            .country("BRA")
                             .zipCode(shippingAddressZipCode)
                     )
             );
@@ -152,27 +131,16 @@ public class Customers {
     }
 
 
-    public String getCustomer() {
+    public Customer getCustomer(String customerId) {
 
-        System.out.println("\nDigite seu e-mail ");
-        String ownId = input.next();
-
-        String getCustomer = String.valueOf(api.customer().get(ownId));
+        Customer getCustomer = api.customer().get(customerId);
 
         return getCustomer;
     }
 
-    private class birthdate extends Date {
+    private class Birthdate extends Date {
     }
 }
 
 
 
-
-
-
-
-
-
-
-        

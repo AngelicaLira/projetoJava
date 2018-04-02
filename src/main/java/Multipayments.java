@@ -27,7 +27,7 @@ public class Multipayments {
     private Multiorders multiorder = new Multiorders();
 
 
-    public Multipayment createMultipayment() throws ParseException {
+    public Multipayment createMultipayment(String multiorderId) throws ParseException {
 
         Multipayment multipayment = new Multipayment();
 
@@ -36,7 +36,7 @@ public class Multipayments {
         try {
 
             multipayment = api.multipayment().create(new PaymentRequest()
-                    .orderId(multiorder.getMultiorder())
+                    .orderId(multiorderId)
                     .installmentCount(1)
                     .escrow(new PaymentRequest.EscrowRequest("Custódia de pagamento"))
                             .fundingInstrument(new FundingInstrumentRequest()

@@ -14,8 +14,6 @@ import br.com.moip.request.PhoneRequest;
 import br.com.moip.request.ShippingAddressRequest;
 import br.com.moip.request.ReceiverRequest;
 
-
-
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -58,24 +56,19 @@ public class Multiorders {
         Integer Qnt = input.nextInt();
 
         /*
-         * CUS_ID_intern
-         */
-        System.out.println("\nDigite seu código de cliente:");
-        String IDCus = input.next();
-
-        /*
          * Name
          */
         System.out.println("\nNome:");
         String CusName = input.next();
 
-        /*
+         /*
          * Email
          */
         System.out.println("\nEmail:");
         String email = input.next();
+
         /*
-         * cpf
+         * CPF
          */
         System.out.println("\nCPF:");
         String Cpf = input.next();
@@ -83,53 +76,64 @@ public class Multiorders {
         /*
          *Input ddd phone
          */
+
         System.out.println("DDD: ");
         String DDD = input.next();
 
         /*
          * Input  phone
          */
+
         System.out.println("Telefone: ");
         String Number = input.next();
 
         /*
          * Input  Street
          */
+
         System.out.println("Rua: ");
         String Rua = input.next();
 
         /*
          * Input  Number
          */
+
         System.out.println("N: ");
         String Num = input.next();
 
         /*
          * Input  CEP
          */
+
         System.out.println("CEP: ");
         String CEP = input.next();
 
-        /*
+         /*
          * Input CITY
          */
+
         System.out.println("Cidade: ");
         String City = input.next();
 
         /*
          * Input State
          */
+
         System.out.println("Estado (2 digitos): ");
         String State = input.next();
+
 
         /*
          * Input Bairro
          */
+
         System.out.println("Bairro: ");
         String Bairro = input.next();
 
 
+
         try {
+
             multiorder = api.multiorder().create(new MultiorderRequest()
                     .ownId("abx123")
                     .addOrder(new OrderRequest()
@@ -140,7 +144,7 @@ public class Multiorders {
                             )
                             .addItem(Choose, Qnt, "Teste", 2000)
                             .customer(new CustomerRequest()
-                                    .ownId(IDCus)
+                                    .ownId("123ABC")
                                     .fullname(CusName)
                                     .email(email)
                                     .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
@@ -157,7 +161,7 @@ public class Multiorders {
                                             .state(State)
                                             .complement("null")
                                             .district(Bairro))
-                            )
+                                          )
                             .addReceiver(new ReceiverRequest()
                                     .secondary("MPA-818172182C15", new AmountRequest().percentual(10), false))
                             .addReceiver(new ReceiverRequest()
@@ -171,7 +175,7 @@ public class Multiorders {
                             )
                             .addItem(Choose, Qnt, "Teste", 2000)
                             .customer(new CustomerRequest()
-                                    .ownId(String.valueOf(IDCus))
+                                    .ownId("123ABC")
                                     .fullname(CusName)
                                     .email(email)
                                     .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
