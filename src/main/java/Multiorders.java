@@ -14,10 +14,6 @@ import br.com.moip.request.PhoneRequest;
 import br.com.moip.request.ShippingAddressRequest;
 import br.com.moip.request.ReceiverRequest;
 
-import br.com.moip.resource.Order;
-import br.com.moip.resource.Phone;
-
-
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -34,26 +30,29 @@ public class Multiorders {
 
     private Scanner input = new Scanner(System.in);
 
-    public boolean createMultiorder() throws ParseException {
+    private Customers customers = new Customers();
+
+    public Multiorder createMultiorder() throws ParseException {
 
         Multiorder multiorder = new Multiorder();
+
 
         /*
          * Input  Own_ID
          */
-        System.out.println("\nID do pedido:" );
-        String IDPed = String.valueOf(multiorder.getId());
+        System.out.println("\nID do pedido:" +(1));
+        String IDPed = String.valueOf(1);
 
         /*
          * Selection product
          */
-        System.out.println("\nEscolha o produto:" );
+        System.out.println("\nEscolha o produto:");
         String Choose = input.next();
 
         /*
          * Selection Quantidade
          */
-        System.out.println("\nQuantidade:" );
+        System.out.println("\nQuantidade:");
         Integer Qnt = input.nextInt();
 
         /*
@@ -65,18 +64,19 @@ public class Multiorders {
         /*
          * Name
          */
-        System.out.println("\nNome:" );
+        System.out.println("\nNome:");
         String CusName = input.next();
 
         /*
          * Email
          */
-        System.out.println("\nEmail:" );
+        System.out.println("\nEmail:");
         String email = input.next();
+
         /*
          * cpf
          */
-        System.out.println("\nCPF:" );
+        System.out.println("\nCPF:");
         String Cpf = input.next();
 
         /*
@@ -129,88 +129,108 @@ public class Multiorders {
 
 
         try {
-        multiorder = api.multiorder().create(new MultiorderRequest()
-                .ownId("meu_multiorder_id")
-                .addOrder(new OrderRequest()
-                        .ownId(String.valueOf(IDPed))
-                        .amount(new OrderAmountRequest()
-                                .subtotals(new SubtotalsRequest().shipping(2000))
-                                .currency("BRL")
-                        )
-                        .addItem(Choose,Qnt,"Teste",2000)
-                        .customer(new CustomerRequest()
-                                .ownId(String.valueOf(IDCus))
-                                .fullname(CusName)
-                                .email(email)
-                                .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
-                                .taxDocument(TaxDocumentRequest.cpf(Cpf))
-                                .phone(new PhoneRequest()
-                                        .countryCode("55")
-                                        .setAreaCode(DDD)
-                                        .setNumber(Number))
-                                .shippingAddressRequest(new ShippingAddressRequest()
-                                        .street(Rua)
-                                        .streetNumber(Num)
-                                        .zipCode(CEP)
-                                        .city(City)
-                                        .state(State)
-                                        .complement("null")
-                                        .district(Bairro))
-                        )
-                        .addReceiver(new ReceiverRequest()
-                                .secondary("MPA-818172182C15", new AmountRequest().percentual(90), false))
-                        .addReceiver(new ReceiverRequest()
-                                .primary("MPA-101C9F83FF3A", new AmountRequest(), true))
-                )
-                .addOrder(new OrderRequest()
-                        .ownId("pedido_2_id")
-                        .amount(new OrderAmountRequest()
-                                .subtotals(new SubtotalsRequest().shipping(3000))
-                                .currency("BRL")
-                        )
-                        .addItem(Choose,Qnt,"Teste",2000)
-                        .customer(new CustomerRequest()
-                                .ownId(String.valueOf(IDCus))
-                                .fullname(CusName)
-                                .email(email)
-                                .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
-                                .taxDocument(TaxDocumentRequest.cpf(Cpf))
-                                .phone(new PhoneRequest()
-                                        .countryCode("55")
-                                        .setAreaCode(DDD)
-                                        .setNumber(Number))
-                                .shippingAddressRequest(new ShippingAddressRequest()
-                                        .street(Rua)
-                                        .streetNumber(Num)
-                                        .zipCode(CEP)
-                                        .city(City)
-                                        .state(State)
-                                        .complement("null")
-                                        .district(Bairro))
-                        )
-                        .addReceiver(new ReceiverRequest()
-                                .primary("MPA-101C9F83FF3A", new AmountRequest())
-                        )
-                )
-        );
+            multiorder = api.multiorder().create(new MultiorderRequest()
+                    .ownId("abx123")
+                    .addOrder(new OrderRequest()
+                            .ownId(String.valueOf(IDPed))
+                            .amount(new OrderAmountRequest()
+                                    .subtotals(new SubtotalsRequest().shipping(2000))
+                                    .currency("BRL")
+                            )
+                            .addItem(Choose, Qnt, "Teste", 2000)
+                            .customer(new CustomerRequest()
+                                    .ownId(IDCus)
+                                    .fullname(CusName)
+                                    .email(email)
+                                    .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
+                                    .taxDocument(TaxDocumentRequest.cpf(Cpf))
+                                    .phone(new PhoneRequest()
+                                            .countryCode("55")
+                                            .setAreaCode(DDD)
+                                            .setNumber(Number))
+                                    .shippingAddressRequest(new ShippingAddressRequest()
+                                            .street(Rua)
+                                            .streetNumber(Num)
+                                            .zipCode(CEP)
+                                            .city(City)
+                                            .state(State)
+                                            .complement("null")
+                                            .district(Bairro))
+                            )
+                            .addReceiver(new ReceiverRequest()
+                                    .secondary("MPA-818172182C15", new AmountRequest().percentual(10), false))
+                            .addReceiver(new ReceiverRequest()
+                                    .primary("MPA-101C9F83FF3A", new AmountRequest(), true))
+                    )
+                    .addOrder(new OrderRequest()
+                            .ownId("pedido_2_id")
+                            .amount(new OrderAmountRequest()
+                                    .subtotals(new SubtotalsRequest().shipping(3000))
+                                    .currency("BRL")
+                            )
+                            .addItem(Choose, Qnt, "Teste", 2000)
+                            .customer(new CustomerRequest()
+                                    .ownId(String.valueOf(IDCus))
+                                    .fullname(CusName)
+                                    .email(email)
+                                    .birthdate(new ApiDateRequest().date(new GregorianCalendar(1988, Calendar.DECEMBER, 30).getTime()))
+                                    .taxDocument(TaxDocumentRequest.cpf(Cpf))
+                                    .phone(new PhoneRequest()
+                                            .countryCode("55")
+                                            .setAreaCode(DDD)
+                                            .setNumber(Number))
+                                    .shippingAddressRequest(new ShippingAddressRequest()
+                                            .street(Rua)
+                                            .streetNumber(Num)
+                                            .zipCode(CEP)
+                                            .city(City)
+                                            .state(State)
+                                            .complement("null")
+                                            .district(Bairro))
+                            )
+                            .addReceiver(new ReceiverRequest()
+                                    .primary("MPA-101C9F83FF3A", new AmountRequest(), true)
+                            )
+                    )
+            );
 
-        return true;
 
-    } catch (UnexpectedException e) {
-        //StatusCode >= 500
-    } catch (ValidationException e) {
-        //StatusCode entre 400 e 499 (exceto 401)
+
+
+        } catch (UnexpectedException e) {
+            //StatusCode >= 500
+        } catch (ValidationException e) {
+            //StatusCode entre 400 e 499 (exceto 401)
+        }
+
+        return multiorder;
     }
-        return false;
-}
 
-    public Multiorder getMultiorder() {
+        public String getMultiorder () {
 
 
-        System.out.println("\n Digite o ID Moip do Order:");
-        String id = input.next();
-        Multiorder getMultiorder = api.multiorder().get(id);
+            System.out.println("\nID Moip:");
+            String id = input.next();
+            String getMutiorder = String.valueOf(api.multiorder().get(id));
 
-        return getMultiorder();
+
+            return id;
+        }
+
+/*
+
+        private int IDs () {
+            int nextId = 0 + 1;
+            int getNextId;
+
+
+            int id = getNextId();
+            return nextId;
+        }
+
+        private int getNextId () {
+            return 1;
+        }
+*/
+
     }
-}
