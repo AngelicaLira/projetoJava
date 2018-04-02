@@ -1,46 +1,49 @@
 import java.text.ParseException;
-import br.com.moip.request.MultiorderRequest;
-import br.com.moip.resource.Escrow;
 
 public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-    //    Customers customer = new Customers();
+        //Cria Customer
+        Customers customer = new Customers();
 
-//       System.out.println(customer.createCustomers().getOwnId());
+        System.out.println(customer.createCustomers().getOwnId());
+        System.out.println(customer.getCustomer());
 
+        //Solicita autorização
         Auth auth = new Auth();
         System.out.println(auth.createAuth());
 
+        //Retorna Token
         Tokens tokens = new Tokens();
         System.out.println(tokens.createTokens());
         //* verificar onde colocar o try catch*//*
-/*
-
-      Multiorders multiorder = new Multiorders();
-
-      System.out.println(multiorder.createMultiorder().getId());
-       //System.out.println(multiorder.getMultiorder());
 
 
-      Multipaycc multipayment = new Multipaycc();
+        //Cria Multiorder
+        Multiorders multiorders = new Multiorders();
+        System.out.println(multiorders.createMultiorder().getId());
 
-      System.out.println(multipayment.createMultipayment());
 
-       //System.out.println(multipayment.getMultipayment());
+        //Pagamento Cartão
+        Multipaycc multipayment = new Multipaycc();
+        System.out.println(multipayment.createMultipayment());
 
+        //Pagamento Boleto
+        Multipayments multipaymentbol = new Multipayments();
+        System.out.println(multipaymentbol.createMultipayment());
+
+        //Libera Escrow
         Escrows escrow = new Escrows();
-        System.out.println(escrow());
+        System.out.println(escrow);
+
+        // verificar onde colocar o try catch
 
 
 
-    }
+       //* verificar onde colocar o try catch*//*
 
-    private static boolean escrow() {
-        return true;
-    }
-}
-*/
+        //OK
+
     }
 }

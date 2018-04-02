@@ -14,8 +14,6 @@ import br.com.moip.request.PhoneRequest;
 import br.com.moip.request.ShippingAddressRequest;
 import br.com.moip.request.ReceiverRequest;
 
-
-
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -60,8 +58,8 @@ public class Multiorders {
         /*
          * CUS_ID_intern
          */
-        System.out.println("\nDigite seu código de cliente:");
-        String IDCus = input.next();
+        System.out.println("\nID do CUS:" );
+        String IDCus = String.valueOf(CustomerRequest.class);
 
         /*
          * Name
@@ -74,6 +72,7 @@ public class Multiorders {
          */
         System.out.println("\nEmail:");
         String email = input.next();
+
         /*
          * cpf
          */
