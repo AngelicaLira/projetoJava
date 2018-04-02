@@ -53,6 +53,37 @@ public class Main {
         String escrow = new Escrows().releaseEscrow(escrowId);
         System.out.println(escrow);
 
+        /*
+         * reembolso cartão
+         */
+        String refundId;
+        System.out.println("Selecione o metodo de pagamento (1- pagamento com cartao/ 2- pagamento com boleto):");
+        int refundMethod = input.nextInt();
+        if (refundMethod == 1)
+
+        {
+            String refund = new Refunds().createRefunds().getId();
+            System.out.println(refund);
+
+    } else
+
+    {
+
+
+        if (refundMethod == 2) {
+            /*
+             * reembolso boleto
+             */
+
+            String refunds = new RefundBoleto().createRefundBoleto().getId();
+            System.out.println(refunds);
+
+        } else {
+                System.out.println("Método de pagamento inválido!");
+                refundId = "ERROR";
+                System.exit(1);
+            }
+        }
 
         //Cria Conta Moip
         Accounts accounts = new Accounts();
@@ -68,4 +99,5 @@ public class Main {
         //* verificar onde colocar o try catch*//*
     }
     }
+
 
