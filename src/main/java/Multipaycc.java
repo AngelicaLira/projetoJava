@@ -24,7 +24,7 @@ public class Multipaycc {
     private Multiorders multiorder = new Multiorders();
 
 
-    public Multipayment createMultipayment() throws ParseException {
+    public Multipayment createMultipayment(String multiorderId) throws ParseException {
 
         Multipayment multipayment = new Multipayment();
 
@@ -66,7 +66,7 @@ public class Multipaycc {
 
         //* Input birthdate
 
-    System.out.println("\nData de nascimento: ");
+    System.out.println("\nData de nascimento (yyyy-mm-dd): ");
         String birthday = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYYMMDD");
         LocalGregorianCalendar.Date date = null;
@@ -87,7 +87,7 @@ public class Multipaycc {
         try {
 
             multipayment = api.multipayment().create(new PaymentRequest()
-                    .orderId(multiorder.getMultiorder())
+                    .orderId(multiorderId)
                     .installmentCount(1)
                     .escrow(new PaymentRequest.EscrowRequest("Custódia de pagamento"))
                     .fundingInstrument(

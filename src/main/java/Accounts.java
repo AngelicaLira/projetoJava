@@ -267,7 +267,7 @@ public class Accounts {
         /*
          * Input CNAE company
          */
-        System.out.println("CNAE 82.91-1/00" );
+        System.out.println("Copie este CNAE 82.91-1/00" );
         String companyCNAE = input.next();
 
         /*
