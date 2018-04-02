@@ -66,7 +66,7 @@ public class Multipaycc {
 
         //* Input birthdate
 
-    System.out.println("\nData de nascimento: ");
+    System.out.println("\nData de nascimento (yyyy-mm-dd): ");
         String birthday = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYYMMDD");
         LocalGregorianCalendar.Date date = null;

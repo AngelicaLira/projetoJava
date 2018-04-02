@@ -15,18 +15,10 @@ public class Escrows {
 
     private Scanner input = new Scanner(System.in);
 
-    public String getEscrow()  {
-
-
-        /*
-         * Input Escrow
-         */
-        System.out.println("Digite a custódia:");
-        String escr = input.next();
+    public String releaseEscrow(String escrowId)  {
 
         try {
-
-            Escrow escrow = api.escrow().release(escr);
+            Escrow escrow = api.escrow().release(escrowId);
             System.out.println(escrow);
 
         } catch (UnexpectedException e) {
@@ -34,6 +26,6 @@ public class Escrows {
         } catch (ValidationException e) {
             //StatusCode entre 400 e 499 (exceto 401)
         }
-    return escr;
+    return escrowId;
     }
 }
